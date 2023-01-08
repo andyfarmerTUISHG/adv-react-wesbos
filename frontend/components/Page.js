@@ -7,7 +7,7 @@ import styled, { createGlobalStyle } from 'styled-components';
 const GlobalStyles = createGlobalStyle`
 	@font-face {
 		font-family: 'radnika-next';
-		src: url('/public/static/radnikanext-medium-webfont.woff2');
+		src: url('/static/radnikanext-medium-webfont.woff2');
 		format('woff2');
 		font-weight: normal;
 		font-style: normal;
