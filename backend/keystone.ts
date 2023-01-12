@@ -5,6 +5,7 @@ import { Product } from './schemas/Product';
 import { ProductImage } from './schemas/ProductImage';
 import { createAuth } from '@keystone-next/auth';
 import {withItemData,statelessSessions} from '@keystone-next/keystone/session'
+import { insertSeedData } from './seed-data';
 const databaseURL = process.env.DATABASE_URL || 'local'
 
 const sessionConfig ={
@@ -35,6 +36,16 @@ export default withAuth(
 			adapter: 'mongoose',
 			url: databaseURL,
 			//TODO: Add data seeding here
+			async onConnect(keystone) {
+				console.log(`🔗 - Connected to the Database`)
+				console.log(`---------------------------------`)
+				// console.log(process.argv)
+				console.log(`---------------------------------`)
+
+				if(process.argv.includes('--seed-data')){
+					await insertSeedData(keystone);
+				}
+			},
 		},
 		lists: createSchema({
 			// Schema items go in here
