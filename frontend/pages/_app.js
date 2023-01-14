@@ -15,7 +15,7 @@ Router.events.on('routeChangeError', () => NProgress.done())
 
 
 function MyApp({Component, pageProps, apollo}) {
-	console.log(apollo)
+	// console.log(apollo)
 	return (
 		<ApolloProvider client={apollo}>
 		{/* A provider is a high level component that lives high in the app
