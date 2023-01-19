@@ -1,7 +1,15 @@
 import React from 'react';
+import CreateProduct from '../components/CreateProduct';
 
 function sellPage() {
-  return <div>Sell Page</div>;
+  return (
+  	<div>
+		<h2>
+			Sell Page
+		</h2>
+		<CreateProduct />
+	</div>
+  );
 }
 
 export default sellPage;
