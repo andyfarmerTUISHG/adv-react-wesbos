@@ -5,6 +5,7 @@ import useForm from '../lib/useForm'
 import DisplayError from './ErrorMessage';
 import { ALL_PRODUCTS_QUERY } from './Products';
 import Form from './styles/Form'
+import Router from 'next/router'
 
 const CREATE_PRODUCT_MUTATION =gql`
 	mutation CREATE_PRODUCT_MUTATION(
@@ -57,12 +58,17 @@ export default function CreateProduct() {
   return (
 	<Form onSubmit={async (e) => {
 		e.preventDefault();
-		console.log(inputs)
+
 		// Submit the input fields to the backend
 		// As we know the inputs - the data is defined in the useMutation Hook
 		// If not known in advance data can be sent as part of createProduct call
-		await createProduct();
+		const res = await createProduct();
 		clearForm()
+		// Go to that products page
+		Router.push({
+			pathname: `/product/${res.data.createProduct.id}`
+		})
+
 	}}>
 		<DisplayError error={error} />
 		<fieldset disabled={loading} aria-busy={loading}>
