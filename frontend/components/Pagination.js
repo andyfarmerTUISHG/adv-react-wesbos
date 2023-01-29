@@ -37,7 +37,7 @@ export default function Pagination({page}) {
 			</a>
 		</Link>
 		<p>
-			Page __of {pageCount}
+			Page {page} of {pageCount}
 		</p>
 		<p>{count} Items Total</p>
 		<Link href={`/products/${page + 1}`}>
