@@ -10,6 +10,13 @@ const DELETE_PRODUCT_MUTATION = gql`
 	}
 `
 
+// Function to evict item from the Apollo cache post delete
+// vars cache is part of Apollo 3+ & payload is part of the Delete Mutation return
+function update(cache, payload) {
+	console.log(`Running the update function after delete mutation`)
+	cache.evict(cache.identify(payload.data.deleteProduct))
+}
+
 export default function DeleteProduct({id, children}) {
 	const [deleteProduct, {loading}] = useMutation(
 		DELETE_PRODUCT_MUTATION,
@@ -17,6 +24,7 @@ export default function DeleteProduct({id, children}) {
 			variables: {
 				id: id
 			},
+			update: update
 		}
 	)
 	return (
