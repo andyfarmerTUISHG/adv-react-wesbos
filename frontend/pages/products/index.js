@@ -10,7 +10,7 @@ function productsPage() {
   	<div>
 		<h3>Available Product List </h3>
 		<Pagination page={ page || 1} />
-			<Products />
+			<Products page={ page || 1} />
 		<Pagination page={ page || 1} />
 	</div>
   );
