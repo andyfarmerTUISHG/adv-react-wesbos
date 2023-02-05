@@ -4,12 +4,16 @@ import gql from 'graphql-tag';
 import { useMutation } from '@apollo/client';
 import DisplayError from './ErrorMessage';
 
-const REQUEST_RESET_MUTATION = gql`
-	mutation REQUEST_RESET_MUTATION(
+const RESET_MUTATION = gql`
+	mutation RESET_MUTATION(
 			$email: String!
+			$password: String!
+			$token: String!
 		) {
-			sendUserPasswordResetLink(
+			redeemUserPasswordResetToken(
 				email: $email
+				token: $token
+				password: $password
 			) {
 				code
 				message
@@ -17,20 +21,21 @@ const REQUEST_RESET_MUTATION = gql`
 		}
 `
 
-export default function RequestReset() {
+export default function Reset({ token }) {
 	const {inputs, handleChange, resetForm} = useForm({
-		email: ''
+		email: 'user1@farmer.gq',
+		password: 'password2',
+		token,
 	})
 
 const [resetUser, {data, loading, error }] = useMutation(
-	REQUEST_RESET_MUTATION,
+	RESET_MUTATION,
 	{
-		variables: inputs,
-	// refetch the currently logged in user
-	// refetchQueries: [{
-	// 	query: CURRENT_USER_QUERY
-	// }]
+		variables: inputs
 })
+
+const sucessfulError = data?.redeemUserPasswordResetToken?.__typename === "RedeemUserPasswordResetTokenResult"
+? data?.redeemUserPasswordResetToken : undefined
 
 async function handleSubmit(e) {
 	e.preventDefault();
@@ -43,12 +48,12 @@ async function handleSubmit(e) {
 
   return (
 	<Form method="POST" onSubmit={handleSubmit}>
-		<h2>Forgot Password</h2>
-		<DisplayError error={error} />
+		<h2>Reset Your Password</h2>
+		<DisplayError error={error || sucessfulError} />
 		<fieldset>
 
-		{data?.sendUserPasswordResetLink === null &&
-			(<p>Success! Check your email for a link!</p>)}
+		{data?.redeemUserPasswordResetToken === null &&
+			(<p>Success! You can now log in!</p>)}
 
 			<label htmlFor="email">
 				Email
@@ -61,8 +66,18 @@ async function handleSubmit(e) {
 					onChange={handleChange}
 					/>
 			</label>
-
-			<button type='submit'>Forgot Password</button>
+			<label htmlFor="password">
+				Password
+				<input
+					type='password'
+					name='password'
+					placeholder='Password'
+					autoComplete='password'
+					value={inputs.password}
+					onChange={handleChange}
+					/>
+			</label>
+			<button type='submit'>Reset Password</button>
 		</fieldset>
 
 	</Form>
