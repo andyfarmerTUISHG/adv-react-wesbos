@@ -8,7 +8,7 @@ import gql from 'graphql-tag'
 import { useQuery } from '@apollo/client'
 import {perPage} from '../config'
 
-const PAGINATION_QUERY = gql`
+export const PAGINATION_QUERY = gql`
 	query PAGINATION_QUERY{
 		_allProductsMeta {
 			count
@@ -48,5 +48,3 @@ export default function Pagination({page}) {
 	</PaginationStyles>
   )
 }
-
- Pagination
