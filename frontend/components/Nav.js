@@ -2,6 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import NavStyles from './styles/NavStyles'
 import { useUser } from './User'
+import SignOut from './SignOut';
 
 export default function Nav() {
 	const user = useUser();
@@ -16,7 +17,7 @@ export default function Nav() {
 					<Link href="/orders">Orders</Link>
 					<Link href="/account">Account</Link>
 					<Link href="/cart">Cart</Link>
-
+					<SignOut />
 				</>
 			)
 		}
