@@ -15,5 +15,13 @@ export const User = list({
 		}),
 		password: password(),
 		// TODO:, add roles cart and orders
+		cart: relationship({
+			ref: 'CartItem.user',
+			many: true,
+			ui: {
+				createView: { fieldMode: 'hidden' },
+				itemView: { fieldMode: 'read' },
+			}
+		})
 	}
 })

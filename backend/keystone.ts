@@ -1,12 +1,17 @@
 import 'dotenv/config'
 import { config, createSchema } from "@keystone-next/keystone/schema";
+import { createAuth } from '@keystone-next/auth';
+import {
+	withItemData,
+	statelessSessions,
+} from '@keystone-next/keystone/session';
 import { User } from './schemas/User';
 import { Product } from './schemas/Product';
 import { ProductImage } from './schemas/ProductImage';
-import { createAuth } from '@keystone-next/auth';
-import {withItemData,statelessSessions} from '@keystone-next/keystone/session'
+import { CartItem } from './schemas/CartItem';
 import { insertSeedData } from './seed-data';
 import { sendPasswordResetEmail } from './lib/mail';
+
 const databaseURL = process.env.DATABASE_URL || 'local'
 
 const sessionConfig ={
@@ -60,7 +65,8 @@ export default withAuth(
 			// Schema items go in here
 			User,
 			Product,
-			ProductImage
+			ProductImage,
+			CartItem
 		}),
 		ui: {
 			//TODO: Change this for roles
