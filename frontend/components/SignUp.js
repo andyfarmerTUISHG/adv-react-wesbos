@@ -25,18 +25,13 @@ const SIGNUP_MUTATION = gql`
 
 export default function SignUp() {
 	const {inputs, handleChange, resetForm} = useForm({
-		email: 'user1@farmer.gq',
-		password: 'password1',
-		name: 'User 1'
-
+		email: '',
+		password: '',
+		name: '',
 	})
 
 const [signup, {data, loading, error }] = useMutation(SIGNUP_MUTATION, {
 	variables: inputs,
-	// // refetch the currently logged in user
-	// refetchQueries: [{
-	// 	query: CURRENT_USER_QUERY
-	// }]
 })
 
 async function handleSubmit(e) {
@@ -90,8 +85,6 @@ async function handleSubmit(e) {
 			</label>
 			<button type='submit'>Sign Up</button>
 		</fieldset>
-
 	</Form>
   )
 }
-

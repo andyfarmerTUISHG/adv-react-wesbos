@@ -23,8 +23,8 @@ const RESET_MUTATION = gql`
 
 export default function Reset({ token }) {
 	const {inputs, handleChange, resetForm} = useForm({
-		email: 'user1@farmer.gq',
-		password: 'password2',
+		email: '',
+		password: '',
 		token,
 	})
 
@@ -42,7 +42,7 @@ async function handleSubmit(e) {
 	// console.log(inputs)
 	// send email and password to the graphQLAPI
 	const res = await resetUser().catch(console.error)
-	console.log(res)
+	// console.log(res)
 	resetForm()
 }
 

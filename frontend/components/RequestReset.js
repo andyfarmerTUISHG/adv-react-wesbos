@@ -19,7 +19,7 @@ const REQUEST_RESET_MUTATION = gql`
 
 export default function RequestReset() {
 	const {inputs, handleChange, resetForm} = useForm({
-		email: ''
+		email: '',
 	})
 
 const [resetUser, {data, loading, error }] = useMutation(
@@ -61,10 +61,8 @@ async function handleSubmit(e) {
 					onChange={handleChange}
 					/>
 			</label>
-
 			<button type='submit'>Forgot Password</button>
 		</fieldset>
-
 	</Form>
   )
 }

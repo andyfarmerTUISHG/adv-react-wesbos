@@ -6,6 +6,7 @@ import { ProductImage } from './schemas/ProductImage';
 import { createAuth } from '@keystone-next/auth';
 import {withItemData,statelessSessions} from '@keystone-next/keystone/session'
 import { insertSeedData } from './seed-data';
+import { sendPasswordResetEmail } from './lib/mail';
 const databaseURL = process.env.DATABASE_URL || 'local'
 
 const sessionConfig ={
@@ -24,6 +25,9 @@ const { withAuth } = createAuth({
 	passwordResetLink: {
 		async sendToken(args){
 			// console.log(args)
+			console.log(`✉️ - Sending Reset Token`)
+			const {identity, token} = args
+			await sendPasswordResetEmail(token, identity )
 		}
 	}
 })
