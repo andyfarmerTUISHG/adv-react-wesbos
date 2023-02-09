@@ -6,7 +6,7 @@ import SignOut from './SignOut';
 
 export default function Nav() {
 	const user = useUser();
-	console.log(user)
+	// console.log(user)
   return (
 	<NavStyles>
 		<Link href="/products">Products</Link>
@@ -25,8 +25,6 @@ export default function Nav() {
 			!user && (
 				<>
 					<Link href="/signin">Sign In</Link>
-
-
 				</>
 			)
 		}
