@@ -37,7 +37,6 @@ const SINGLE_PRODUCT_QUERY = gql`
 			image{
 				publicUrlTransformed
 			}
-		altText
 		}
 	}
 	}
