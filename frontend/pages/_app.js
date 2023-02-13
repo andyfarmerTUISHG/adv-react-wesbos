@@ -5,6 +5,7 @@ import NProgress from "nprogress";
 import "../components/styles/nprogress.css";
 import { ApolloProvider } from '@apollo/client';
 import withData from '../lib/withData'
+import { CartStateProvider } from '../lib/cartState';
 
 // See https://nextjs.org/docs/api-reference/next/router
 // See https://ricostacruz.com/nprogress/
@@ -18,12 +19,14 @@ function MyApp({Component, pageProps, apollo}) {
 	// console.log(apollo)
 	return (
 		<ApolloProvider client={apollo}>
-		{/* A provider is a high level component that lives high in the app
-		   this allows the children components to gain access to the data */}
-		<Page>
-			<Component {...pageProps} />
-		</Page>
-	</ApolloProvider>
+			{/* A provider is a high level component that lives high in the app
+			this allows the children components to gain access to the data */}
+			<CartStateProvider>
+				<Page>
+					<Component {...pageProps} />
+				</Page>
+			</CartStateProvider>
+		</ApolloProvider>
   )
 }
 
