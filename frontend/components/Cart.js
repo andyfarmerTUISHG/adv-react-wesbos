@@ -6,6 +6,7 @@ import CartStyles from './styles/CartStyles'
 import Supreme from './styles/Supreme'
 import CloseButton from './styles/CloseButton'
 import { useUser } from './User'
+import RemoveFromCart from './RemoveFromCart'
 
 const CartItemStyles = styled.li`
 	padding: 1rem 0;
@@ -36,6 +37,7 @@ function CartItem({cartItem}) {
 					<em>{cartItem.quantity} &times; {formatMoney(product.price)} each</em>
 				</p>
 			</div>
+			<RemoveFromCart id={cartItem.id} />
 		</CartItemStyles>
 	)
 }
