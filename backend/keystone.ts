@@ -11,6 +11,7 @@ import { ProductImage } from './schemas/ProductImage';
 import { CartItem } from './schemas/CartItem';
 import { insertSeedData } from './seed-data';
 import { sendPasswordResetEmail } from './lib/mail';
+import { extendGraphqlSchema } from './mutations';
 
 const databaseURL = process.env.DATABASE_URL || 'local'
 
@@ -54,7 +55,7 @@ export default withAuth(
 				console.log(`🔗 - Connected to the Database`)
 				console.log(`---------------------------------`)
 				// console.log(process.argv)
-				console.log(`---------------------------------`)
+				// console.log(`---------------------------------`)
 
 				if(process.argv.includes('--seed-data')){
 					await insertSeedData(keystone);
@@ -68,6 +69,7 @@ export default withAuth(
 			ProductImage,
 			CartItem
 		}),
+		extendGraphqlSchema: extendGraphqlSchema,
 		ui: {
 			//TODO: Change this for roles
 			//Only show the UI only for people who past this test
