@@ -4,17 +4,17 @@ export default function paginationField() {
   return {
 	keyArgs: false, // Tells Apollo we will take care of everything
 	read(existing = [], { args, cache}) {
-		console.log({existing, args, cache})
+		// console.log({existing, args, cache})
 		const {skip, first} = args
 
 		// REead the number of items on the page from the cahce
 		const data = cache.readQuery({
 			query: PAGINATION_QUERY
 		})
-		console.log(`data from PAGINATION_QUERY`)
+		// console.log(`data from PAGINATION_QUERY`)
 		// console.log(data)
 		const count = data?._allProductsMeta?.count
-		console.log(count)
+		// console.log(count)
 		// Get Current Page & Total Number of Pages
 		const page = skip / first + 1
 		const pages = Math.ceil(count / first)
@@ -36,7 +36,7 @@ export default function paginationField() {
 
 		// If there are items, just return them from the cache, and we don't need to go to the network
 		if (items.length) {
-			console.log(`There are ${items.length} items in the cache! Send them to Apollo `)
+			// console.log(`There are ${items.length} items in the cache! Send them to Apollo `)
 			return items
 		}
 
@@ -51,13 +51,13 @@ export default function paginationField() {
 	merge(existing, incoming, {args}) {
 		const {skip, first} = args
 		// This runs when the Apollo clients comes back from the network with our products
-		console.log(`Merging ${incoming.length} items from the network `)
-		console.log(incoming)
+		// console.log(`Merging ${incoming.length} items from the network `)
+		// console.log(incoming)
 		const merged = existing ? existing.slice(0):[];
 		for(let i = skip; i < skip + incoming.length; ++i) {
 			merged[i] = incoming[i -skip]
 		}
-		console.log(merged)
+		// console.log(merged)
 		// Finally we return the merged items to Apollo
 		return merged
 	}
