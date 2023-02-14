@@ -21,14 +21,20 @@ const REMOVE_FROM_CART_MUTATION =gql`
 `
 
 function update(cache, payload) {
-	cache.evict(cahce.identify(payload.data.deleteCartItem))
+	cache.evict(cache.identify(payload.data.deleteCartItem))
 }
 
 function RemoveFromCart({id}) {
 	const [removeFromCart, {loading, error, data}] = useMutation(
 		REMOVE_FROM_CART_MUTATION, {
 			variables: {id},
-			update
+			update,
+			// optimisticResponse: {
+			// 	deleteCartItem: {
+			// 		__typename: `CartItem`,
+			// 		id,
+			// 	}
+			// }
 		}
 	)
 	return (

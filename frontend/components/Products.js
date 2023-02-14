@@ -13,7 +13,6 @@ export const ALL_PRODUCTS_QUERY = gql`
 		price
 		photo{
 		id
-		altText
 		image {
 			publicUrlTransformed
 		}
