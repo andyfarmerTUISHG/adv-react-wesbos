@@ -5,13 +5,15 @@ export default function formatMoney(amount = 0) {
 		currency: 'GBP',
 		minimumFractionDigits: 2
 	}
+
+	// check if its a clean amount
 	if (amount % 100 === 0) {
 		options.minimumFractionDigits = 0
 	}
 	const formatter = Intl.NumberFormat(
-		'en-US',
+		'en-GB',
 		options
 	)
 	return formatter.format(amount / 100)
+	
 }
-

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 export default function useForm(initial = {}) {
-	//Create a state object for our inputs
+	// Create a state object for our inputs
 	const [inputs, setInputs] = useState(initial)
 	// To avoid infinite Loop on useEffect convert the state to a unique string
 	const initialValues = Object.values(initial).join('')

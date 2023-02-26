@@ -2,7 +2,7 @@ import { useMutation } from "@apollo/client"
 import gql from "graphql-tag"
 
 const DELETE_PRODUCT_MUTATION = gql`
-	mutation DELETE_PRODUCT_MUTATION($id: ID!){
+	mutation DELETE_PRODUCT_MUTATION($id: ID!) {
 		deleteProduct(id: $id) {
 			id
 			name
