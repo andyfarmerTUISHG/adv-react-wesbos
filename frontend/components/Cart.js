@@ -7,7 +7,7 @@ import Supreme from './styles/Supreme';
 import CloseButton from './styles/CloseButton';
 import { useUser } from './User';
 import RemoveFromCart from './RemoveFromCart';
-import Checkout from './Checkout';
+import { Checkout } from './Checkout';
 
 const CartItemStyles = styled.li`
   padding: 1rem 0;
@@ -54,7 +54,7 @@ export default function Cart() {
 
   if (!me) return null;
   // console.log(me)
-  const { cart } = me;
+  // const { cart } = me;
   // console.log(cart)
   return (
     <CartStyles open={cartOpen}>
@@ -63,7 +63,7 @@ export default function Cart() {
         <CloseButton onClick={closeCart}>&times;</CloseButton>
       </header>
       <ul>
-        {cart.map((cartItem) => (
+        {me.cart.map((cartItem) => (
           <CartItem key={cartItem.id} cartItem={cartItem} />
         ))}
       </ul>
