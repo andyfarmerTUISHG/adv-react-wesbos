@@ -55,7 +55,7 @@ async function checkout(
 		}, 0);
 		console.log(amount);
 		// 3. Create the charge with the stripe library
-		const charge = await stripConfig.paymentIntents.create({
+		const charge = await stripeConfig.paymentIntents.create({
 			amount,
 			currency: 'GBP',
 			confirm: true,
@@ -64,7 +64,7 @@ async function checkout(
 			console.log(err);
 			throw new Error(err.message);
 		});
-
+		console.log(charge);
 		// 4. Convert the cartItems to OrderItems
 		// 5. Create the order and return it
 
