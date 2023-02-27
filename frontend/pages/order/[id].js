@@ -50,7 +50,7 @@ const OrderItemStyles = styled.li`
 
 function OrderItem({ orderItem }) {
   const { name, description, photo, price, quantity } = orderItem;
-  console.log(orderItem);
+  // console.log(orderItem);
   if (!quantity) return null;
   // console.log(product)
   return (

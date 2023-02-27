@@ -59,7 +59,7 @@ function CheckoutForm() {
     // 1. Stop the form from submitting and turn the loader on
     e.preventDefault();
     setLoading(true);
-    console.log('We gotta do some work...');
+    // console.log('We gotta do some work...');
     // 2. Start the page transition
     nProgress.start();
     // 3. Create the payment method via stripe (Token comes back here if successful)
@@ -67,7 +67,7 @@ function CheckoutForm() {
       type: 'card',
       card: elements.getElement(CardElement),
     });
-    console.log(paymentMethod);
+    // console.log(paymentMethod);
     // 4. Handle any errors from stripe
     if (error) {
       setError(error);
@@ -80,8 +80,8 @@ function CheckoutForm() {
         token: paymentMethod.id,
       },
     });
-    console.log('Finished with the order!!');
-    console.log(order);
+    // console.log('Finished with the order!!');
+    // console.log(order);
     // 6. Change the page to view the order
     router.push({
       pathname: `/order/[id]`,
