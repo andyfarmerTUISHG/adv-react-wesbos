@@ -22,6 +22,7 @@ const generatedPermissions = Object.fromEntries(
 // Add a custom role to the permissions object
 export const permissions = {
   ...generatedPermissions,
+  // Custom permission
   isAwesome({ session }: ListAccessArgs): boolean {
     return session?.data.name.includes('andy');
   },
@@ -39,5 +40,13 @@ export const rules = {
     }
     // 2. If not, do they own this item?
     return { user: { id: session.itemId } };
+  },
+  canReadProducts({ session }: ListAccessArgs) {
+    if (permissions.canManageProducts({ session })) {
+      // They can read everything
+      return true;
+    }
+    // They should only see available products (based on status field)
+    return { status: 'AVAILABLE' };
   },
 };
